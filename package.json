@@ -1,5 +1,5 @@
 {
-  "name": "bobrossrtx-ebooks",
+  "name": "bobrossrtx-website",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bobrossrtx/bobrossrtx-ebooks.git"
+    "url": "git+https://github.com/bobrossrtx/bobrossrtx-website.git"
   },
   "keywords": [
     "ebooks"
@@ -18,9 +18,9 @@
   "author": "bobrossrtx",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bobrossrtx/bobrossrtx-ebooks/issues"
+    "url": "https://github.com/bobrossrtx/bobrossrtx-website/issues"
   },
-  "homepage": "https://github.com/bobrossrtx/bobrossrtx-ebooks#readme",
+  "homepage": "https://github.com/bobrossrtx/bobrossrtx-website#readme",
   "dependencies": {
     "express": "^4.18.1"
   }
