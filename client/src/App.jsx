@@ -32,6 +32,9 @@ class App extends Component {
             <Route path='/contact' element={<Test />} />
             <Route path='/privacy' element={<Test />} />
             <Route path='/donate' element={<Test />} />
+            <Route path='/store' element={<Test />} />
+            <Route path='/store/ebooks' element={<Test />} />
+            <Route path='/store/tools' element={<Test />} />
 
             {/* Error Pages */}
             <Route path='*' element={<Redirection to='/error?errorcode=404' />} />

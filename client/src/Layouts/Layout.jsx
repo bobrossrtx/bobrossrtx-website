@@ -52,22 +52,16 @@ const callsToAction = [
 
 const resources = [
     {
-        name: 'Help Center',
-        description: 'Get all of your questions answered in our forums or contact support.',
-        link: '#',
+        name: 'FAQ',
+        description: 'Have all of your questions answered to what happens with this website',
+        link: '/faq',
         icon: LifebuoyIcon,
     },
     {
-        name: 'Guides',
-        description: 'Learn how to maximize our platform to get the most out of it.',
-        link: '#',
-        icon: BookmarkSquareIcon,
-    },
-    {
-        name: 'Events',
-        description: 'See what meet-ups and other events we might be planning near you.',
-        link: '#',
-        icon: CalendarIcon,
+        name: 'Blog',
+        description: 'Read up on new technologies I have learned about and more!',
+        link: '/posts',
+        icon: BookOpenIcon,
     },
 ]
 
