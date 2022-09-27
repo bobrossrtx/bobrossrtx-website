@@ -5,8 +5,13 @@ import {
   BrowserRouter as Router
 } from 'react-router-dom';
 
+// Firebase
+import firebase from 'firebase/compat/app';
+import * as firebaseui from 'firebaseui'
+
 // Global styles
 import './App.css';
+import 'firebaseui/dist/firebaseui.css';
 
 // Pages
 import Layout from './Layouts/Layout';
@@ -14,10 +19,20 @@ import Home from './Pages/Home';
 import Test from './Pages/Test';
 import Redirection from './Pages/Redirection';
 import Error from './Pages/Error';
+import Login from './Pages/Auth/Login';
+import Register from './Pages/Auth/Register';
+import Logout from './Pages/Auth/Logout';
+import Profile from './Pages/Auth/Profile';
 
-class App extends Component {
-  render() {
-    return (
+// Providers
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+
+
+function App(props) {
+  const { currentUser } = useAuth() | null;
+
+  return (
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -25,8 +40,6 @@ class App extends Component {
             {/* Pages */}
             <Route index element={<Home />} />
             <Route path="/about" element={<Test />} />
-            <Route path="/login" element={<Test />} />
-            <Route path="/register" element={<Test />} />
             <Route path="/posts" element={<Test />} />
             <Route path="/post/:id" element={<Test />} />
             <Route path='/contact' element={<Test />} />
@@ -36,8 +49,14 @@ class App extends Component {
             <Route path='/store/ebooks' element={<Test />} />
             <Route path='/store/tools' element={<Test />} />
 
+            {/* Auth */}
+            
+            <Route path="/login" element={!currentUser ? <Login /> : <Profile />} />
+            <Route path="/register" element={!currentUser ? <Register /> : <Profile />} />
+            <Route path="/logout" element={currentUser ? <Logout /> : <Redirection to="/error?errorcode=503" />} />
+
             {/* Error Pages */}
-            <Route path='*' element={<Redirection to='/error?errorcode=404' />} />
+            <Route path='*' element={<Redirection to="/error?errorcode=404" />} />
             <Route path='/error' element={<Error />} />
 
             {/* Redirections */}
@@ -45,8 +64,8 @@ class App extends Component {
           </Route>
         </Routes>
       </Router>
-    );
-  }
+    </AuthProvider>
+  );
 }
 
 export default App;

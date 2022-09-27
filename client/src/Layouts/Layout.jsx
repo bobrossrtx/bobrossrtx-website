@@ -17,6 +17,7 @@ import {
     HeartIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { useAuth } from "../contexts/AuthContext";
 
 const store = [
     {
@@ -76,9 +77,11 @@ function classNames(...classes) {
 }
 
 const Layout = () => {
+    const { currentUser } = useAuth();
+
     return (
         <div>
-            <Popover className="relative bg-white">
+            <Popover className="relative bg-white z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -237,17 +240,36 @@ const Layout = () => {
                                 )}
                             </Popover>
                         </Popover.Group>
-                        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                            <Link to="/login" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                                Login
-                            </Link>
-                            <Link
-                                to="/register"
-                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                            >
-                                Register
-                            </Link>
-                        </div>
+                            {!currentUser ? (
+                                <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                                    <Link 
+                                        to="/login"
+                                        className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+                                    >
+                                        Login
+                                    </Link>
+                                    <Link
+                                        to="/register"
+                                        className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                    >
+                                        Register
+                                    </Link>
+                                </div>
+                            ): (
+                                <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                                    <Link to="/profile"
+                                        className=" whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                    >
+                                        Profile
+                                    </Link>
+                                    <Link 
+                                        to="/logout"
+                                        className="ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+                                    >
+                                        Logout
+                                    </Link>
+                                </div>
+                            )}
                     </div>
                 </div>
 
@@ -306,20 +328,37 @@ const Layout = () => {
                                         </Link>
                                     ))}
                                 </div>
-                                <div>
-                                    <Link
-                                        to="/login"
-                                        className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                                    >
-                                        Login
-                                    </Link>
-                                    <p className="mt-6 text-center text-base font-medium text-gray-500">
-                                        Existing customer?{' '}
-                                        <Link to="/login" className="text-indigo-600 hover:text-indigo-500">
+                                {!currentUser ? (
+                                    <div>
+                                        <Link
+                                            to="/logout"
+                                            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-white "
+                                        >
                                             Login
                                         </Link>
-                                    </p>
-                                </div>
+                                        <Link
+                                            to="/register"
+                                            className="w-full flex items-center justify-center px-4 mt-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                        >
+                                            Register
+                                        </Link>
+                                    </div>
+                                ): (
+                                    <div>
+                                        <Link
+                                            to="/profile"
+                                            className="w-full flex items-center justify-center px-4 mt-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                        >
+                                            Profile
+                                        </Link>
+                                        <Link
+                                            to="/logout"
+                                            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-white "
+                                        >
+                                            Logout
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </Popover.Panel>
@@ -329,17 +368,5 @@ const Layout = () => {
         </div>
     )
 }
-
-// const Layout = () => {
-//     return (
-//       <div>
-//         <header>
-//           <Link to="/">Home</Link>
-//           <Link to="/test">Test</Link>
-//         </header>
-//         <Outlet />
-//       </div>
-//     );
-// }
 
 export default Layout;

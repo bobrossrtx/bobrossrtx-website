@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useSearchParams, UseSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import errorIcon from '../assets/ErrorIcon.png';
 
 const ErrorCodes = {
     "404": "Page not found",
     "500": "Internal server error",
+    "503": "Service unavailable"
 }
 
 const Error = () => {
@@ -25,12 +26,11 @@ const Error = () => {
                     className="w-16 h-16 mt-10 ml-6"
                     alt="Error Icon" />
             </div>
-            <div className="text-5xl mt-5">
+            <div className="text-5xl mt-5 text-center">
                 {errorCode} 
-                {
-                    ErrorCodes[errorCode] ? ` - ${ErrorCodes[errorCode]}` : ""}
+                {ErrorCodes[errorCode] ? ` - ${ErrorCodes[errorCode]}` : ""}
             </div>
-            <div className="text-2xl mt-2" >
+            <div className="text-2xl mt-2 text-center">
                 If you think this is a mistake, please contact me <Link to="/contact" className="underline hover:no-underline">here</Link>.
             </div>
         </div>
