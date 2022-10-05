@@ -1,4 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
+// import {
+//   httpsCallable
+// } from 'firebase-functions';
 import * as Auth from 'firebase/auth';
 import { auth } from "../firebase";
 
@@ -20,6 +23,16 @@ export function AuthProvider({ children }) {
         return Auth.signInWithEmailAndPassword(auth, email, password)
     }
 
+    function createAdmin(email) {
+        // const addAdminRole = httpsCallable('addAdminRole');
+        // return addAdminRole({ email: email }).then(result => {
+        //     console.log(result);
+        // });
+
+        // firebase-functions seems to have broken the app (keep in mind).
+        // I'm going to try to fix it later.
+    }
+
     function logout() {
         return Auth.signOut(auth)
     }
@@ -37,7 +50,8 @@ export function AuthProvider({ children }) {
         currentUser,
         signup,
         login,
-        logout
+        logout,
+        createAdmin
     };
 
   return (

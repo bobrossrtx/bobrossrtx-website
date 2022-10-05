@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate, useSearchParams, UseSearchParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -29,6 +30,9 @@ const Login = () => {
    
     return (
         <div className="container mx-auto pt-20 mt-20 px-20">
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
             <div className="place-items-center justify-center content-center grid h-56 gap-4">
                 <h1 className="text-6xl">Login</h1>
                 {error}
@@ -93,15 +97,7 @@ const Login = () => {
                 <h1>
                     Forgot Password? <Link to="/forgot-password" class="hover:underline">Reset Password</Link>
                 </h1>
-                {/* <p>
-                    <label>
-                        Query: {searchParams.get('query')}
-                    </label>
-                    <br />
-                    <label>
-                        ID: {searchParams.get('id')}
-                    </label>
-                </p> */}
+
             </div>
         </div>
     );

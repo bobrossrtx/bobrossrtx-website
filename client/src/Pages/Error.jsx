@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams } from "react-router-dom";
 
 import errorIcon from '../assets/ErrorIcon.png';
@@ -15,6 +16,9 @@ const Error = () => {
    
     return (
         <div class="grid justify-center place-items-center mt-20">
+            <Helmet>
+                <title>Error {errorCode}</title>
+            </Helmet>
             <div className="text-9xl flex">
                 <img
                     src={errorIcon}

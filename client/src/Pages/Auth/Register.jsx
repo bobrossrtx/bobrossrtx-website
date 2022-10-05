@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate, useSearchParams, UseSearchParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-
 
 const Register = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -10,7 +10,7 @@ const Register = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const { signup, currentUser } = useAuth();
+    const { signup } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -35,6 +35,9 @@ const Register = () => {
    
     return (
         <div className="container mx-auto pt-20 mt-20 px-20">
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             <div className="place-items-center justify-center content-center grid h-56 gap-4">
                 <h1 className="text-6xl">Register</h1>
                 {error}

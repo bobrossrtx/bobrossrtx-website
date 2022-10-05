@@ -2,19 +2,16 @@ import React, { Fragment } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import {
-    ArrowPathIcon,
     Bars3Icon,
-    BookmarkSquareIcon,
-    CalendarIcon,
     ShoppingBagIcon,
     BookOpenIcon,
     LifebuoyIcon,
     PhoneIcon,
-    PlayIcon,
     WrenchScrewdriverIcon,
     CurrencyDollarIcon,
     XMarkIcon,
     HeartIcon,
+    PresentationChartLineIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useAuth } from "../contexts/AuthContext";
@@ -44,6 +41,12 @@ const store = [
         link: '/fiverr',
         icon: CurrencyDollarIcon,
     },
+    {
+        name: 'FBA',
+        description: "Check out my FBA affiliate store.",
+        link: '/store/fba/affiliate',
+        icon: PresentationChartLineIcon,
+    }
 ]
 
 const callsToAction = [

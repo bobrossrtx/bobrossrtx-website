@@ -1,11 +1,12 @@
-import React, { useRef, useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams, UseSearchParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 const Logout = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [query, setQuery] = useState(searchParams.get('query'));
+
 
     const { logout, currentUser } = useAuth();
     const [error, setError] = useState("");
@@ -22,6 +23,9 @@ const Logout = () => {
    
     return (
         <div className="container mx-auto pt-20 mt-20 px-20">
+            <Helmet>
+                <title>Logout</title>
+            </Helmet>
             {!currentUser ? (
                 <div className="place-items-center justify-center content-center grid h-56 gap-4">
                     <h1 className="text-6xl">Logged Out</h1>
